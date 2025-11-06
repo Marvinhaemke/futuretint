@@ -1,0 +1,1936 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FutureTint | Commercial Window Film Solutions - Manitoba & Northern Ontario</title>
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-black: #1a1a1a;
+            --secondary-black: #2d2d2d;
+            --accent-red: #E31E24;
+            --dark-red: #B71C1C;
+            --white: #ffffff;
+            --light-gray: #f5f5f5;
+            --medium-gray: #e0e0e0;
+            --text-gray: #666666;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            line-height: 1.6;
+            color: var(--primary-black);
+            overflow-x: hidden;
+            background: var(--white);
+        }
+
+        /* Scroll animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .slide-in-left {
+            opacity: 0;
+            transform: translateX(-50px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .slide-in-left.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .slide-in-right {
+            opacity: 0;
+            transform: translateX(50px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .slide-in-right.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: var(--white);
+            z-index: 1000;
+            padding: 1rem 0;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        nav.scrolled {
+            padding: 0.7rem 0;
+            box-shadow: 0 4px 30px rgba(0,0,0,0.15);
+        }
+
+        nav .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 3rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .logo {
+            height: 50px;
+            transition: all 0.3s ease;
+        }
+
+        nav.scrolled .logo {
+            height: 40px;
+        }
+
+        nav .logo img {
+            height: 100%;
+            width: auto;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        nav a {
+            color: var(--primary-black);
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            font-size: 0.95rem;
+            position: relative;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            font-family: 'Rajdhani', sans-serif;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent-red);
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        .nav-cta {
+            padding: 0.7rem 1.8rem;
+            background: var(--accent-red);
+            color: var(--white) !important;
+            border-radius: 0;
+            transition: all 0.3s;
+            clip-path: polygon(8% 0, 100% 0, 100% 100%, 0 100%);
+        }
+
+        .nav-cta:hover {
+            background: var(--dark-red);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(227, 30, 36, 0.4);
+        }
+
+        .nav-cta::after {
+            display: none;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            background: linear-gradient(135deg, var(--primary-black) 0%, var(--secondary-black) 100%);
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            padding: 8rem 2rem 4rem;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(30deg, transparent 12%, var(--accent-red) 12.5%, var(--accent-red) 13%, transparent 13.5%),
+                linear-gradient(150deg, transparent 12%, var(--accent-red) 12.5%, var(--accent-red) 13%, transparent 13.5%);
+            background-size: 80px 140px;
+            opacity: 0.03;
+            animation: slidePattern 30s linear infinite;
+        }
+
+        @keyframes slidePattern {
+            0% { transform: translateX(0) translateY(0); }
+            100% { transform: translateX(80px) translateY(140px); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5rem;
+            align-items: center;
+        }
+
+        .hero-text h1 {
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            color: var(--white);
+            margin-bottom: 1.5rem;
+            font-weight: 800;
+            line-height: 1.1;
+            letter-spacing: -1px;
+            font-family: 'Rajdhani', sans-serif;
+            text-transform: uppercase;
+        }
+
+        .hero-text h1 .accent {
+            color: var(--accent-red);
+            display: block;
+        }
+
+        .hero-text .subtitle {
+            font-size: 1.4rem;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 2rem;
+            font-weight: 400;
+            line-height: 1.7;
+        }
+
+        .hero-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .hero-stat {
+            border-left: 3px solid var(--accent-red);
+            padding-left: 1rem;
+        }
+
+        .hero-stat-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--accent-red);
+            line-height: 1;
+            font-family: 'Rajdhani', sans-serif;
+        }
+
+        .hero-stat-label {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+        }
+
+        .hero-image {
+            position: relative;
+        }
+
+        .hero-image::before {
+            content: '';
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 100%;
+            height: 100%;
+            border: 3px solid var(--accent-red);
+            clip-path: polygon(8% 0, 100% 0, 100% 100%, 0 100%);
+        }
+
+        .hero-image img {
+            width: 100%;
+            position: relative;
+            clip-path: polygon(8% 0, 100% 0, 100% 100%, 0 100%);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1.5rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.7rem;
+            padding: 1.2rem 2.5rem;
+            background: var(--accent-red);
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1rem;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            clip-path: polygon(8% 0, 100% 0, 100% 100%, 0 100%);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-family: 'Rajdhani', sans-serif;
+        }
+
+        .cta-button:hover {
+            background: var(--dark-red);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(227, 30, 36, 0.4);
+        }
+
+        .cta-button-secondary {
+            background: transparent;
+            border: 2px solid var(--white);
+            color: var(--white);
+        }
+
+        .cta-button-secondary:hover {
+            background: var(--white);
+            color: var(--primary-black);
+            box-shadow: 0 10px 30px rgba(255, 255, 255, 0.2);
+        }
+
+        /* Section Styling */
+        section {
+            padding: 8rem 2rem;
+            position: relative;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 5rem;
+        }
+
+        .section-label {
+            color: var(--accent-red);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            font-family: 'Rajdhani', sans-serif;
+        }
+
+        .section-title {
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
+            margin-bottom: 1rem;
+            font-weight: 800;
+            color: var(--primary-black);
+            letter-spacing: -1px;
+            line-height: 1.2;
+            font-family: 'Rajdhani', sans-serif;
+            text-transform: uppercase;
+        }
+
+        .section-subtitle {
+            font-size: clamp(1.1rem, 2vw, 1.3rem);
+            color: var(--text-gray);
+            max-width: 700px;
+            margin: 0 auto;
+            font-weight: 400;
+        }
+
+        /* Benefits Section */
+        #benefits {
+            background: var(--light-gray);
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+        }
+
+        .benefit-card {
+            background: var(--white);
+            padding: 2.5rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .benefit-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--accent-red);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.3s ease;
+        }
+
+        .benefit-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .benefit-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+        }
+
+        .benefit-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--accent-red), var(--dark-red));
+            color: var(--white);
+            border-radius: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: 2rem;
+            clip-path: polygon(8% 0, 100% 0, 100% 100%, 0 100%);
+        }
+
+        .benefit-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: var(--primary-black);
+            font-weight: 700;
+            font-family: 'Rajdhani', sans-serif;
+            text-transform: uppercase;
+        }
+
+        .benefit-card p {
+            color: var(--text-gray);
+            line-height: 1.8;
+            font-size: 0.95rem;
+        }
+
+        /* Services Section */
+        #services {
+            background: var(--white);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .service-card {
+            background: var(--light-gray);
+            padding: 3rem;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            border: 2px solid transparent;
+        }
+
+        .service-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 0;
+            height: 0;
+            border-style: solid;
+            border-width: 0 60px 60px 0;
+            border-color: transparent var(--accent-red) transparent transparent;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .service-card:hover::after {
+            opacity: 1;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--accent-red);
+            box-shadow: 0 20px 60px rgba(227, 30, 36, 0.15);
+        }
+
+        .service-icon {
+            font-size: 3rem;
+            color: var(--accent-red);
+            margin-bottom: 1.5rem;
+            display: inline-block;
+            transition: all 0.3s;
+        }
+
+        .service-card:hover .service-icon {
+            transform: scale(1.1);
+        }
+
+        .service-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary-black);
+            font-weight: 700;
+            font-family: 'Rajdhani', sans-serif;
+            text-transform: uppercase;
+        }
+
+        .service-card p {
+            color: var(--text-gray);
+            line-height: 1.8;
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .service-features {
+            list-style: none;
+            margin-top: 1.5rem;
+        }
+
+        .service-features li {
+            padding: 0.5rem 0;
+            color: var(--text-gray);
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+            font-size: 0.9rem;
+        }
+
+        .service-features li i {
+            color: var(--accent-red);
+            font-size: 0.8rem;
+        }
+
+        /* Industries Section */
+        #industries {
+            background: var(--primary-black);
+            color: var(--white);
+        }
+
+        #industries .section-label {
+            color: var(--accent-red);
+        }
+
+        #industries .section-title {
+            color: var(--white);
+        }
+
+        #industries .section-subtitle {
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .industries-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .industry-card {
+            background: var(--secondary-black);
+            padding: 2.5rem;
+            transition: all 0.3s ease;
+            border-left: 4px solid transparent;
+        }
+
+        .industry-card:hover {
+            border-left-color: var(--accent-red);
+            transform: translateX(10px);
+            background: rgba(227, 30, 36, 0.1);
+        }
+
+        .industry-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            color: var(--white);
+            font-weight: 700;
+            font-family: 'Rajdhani', sans-serif;
+            text-transform: uppercase;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .industry-card h3 i {
+            color: var(--accent-red);
+            font-size: 1.8rem;
+        }
+
+        .industry-card p {
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.8;
+            font-size: 0.95rem;
+        }
+
+        /* Case Studies / Portfolio */
+        #portfolio {
+            background: var(--light-gray);
+        }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .portfolio-item {
+            position: relative;
+            overflow: hidden;
+            aspect-ratio: 4/3;
+            cursor: pointer;
+            background: var(--secondary-black);
+        }
+
+        .portfolio-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: all 0.5s ease;
+            filter: grayscale(100%);
+        }
+
+        .portfolio-item:hover img {
+            transform: scale(1.1);
+            filter: grayscale(0%);
+        }
+
+        .portfolio-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.7) 70%, var(--primary-black) 100%);
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            opacity: 0;
+            transition: all 0.4s ease;
+        }
+
+        .portfolio-item:hover .portfolio-overlay {
+            opacity: 1;
+        }
+
+        .portfolio-tag {
+            display: inline-block;
+            padding: 0.4rem 1rem;
+            background: var(--accent-red);
+            color: var(--white);
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 1rem;
+            align-self: flex-start;
+            clip-path: polygon(8% 0, 100% 0, 100% 100%, 0 100%);
+        }
+
+        .portfolio-overlay h4 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+            color: var(--white);
+            font-family: 'Rajdhani', sans-serif;
+            text-transform: uppercase;
+        }
+
+        .portfolio-overlay p {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 0.9rem;
+        }
+
+        /* ROI Calculator Section */
+        #roi {
+            background: var(--white);
+        }
+
+        .roi-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5rem;
+            align-items: center;
+        }
+
+        .roi-benefits {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .roi-item {
+            display: flex;
+            gap: 1.5rem;
+            align-items: flex-start;
+        }
+
+        .roi-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--accent-red);
+            color: var(--white);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            flex-shrink: 0;
+            clip-path: polygon(8% 0, 100% 0, 100% 100%, 0 100%);
+        }
+
+        .roi-item h4 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: var(--primary-black);
+            font-weight: 700;
+            font-family: 'Rajdhani', sans-serif;
+            text-transform: uppercase;
+        }
+
+        .roi-item p {
+            color: var(--text-gray);
+            line-height: 1.7;
+        }
+
+        .roi-calculator {
+            background: var(--light-gray);
+            padding: 3rem;
+            border-left: 4px solid var(--accent-red);
+        }
+
+        .roi-calculator h3 {
+            font-size: 1.8rem;
+            margin-bottom: 2rem;
+            color: var(--primary-black);
+            font-weight: 700;
+            font-family: 'Rajdhani', sans-serif;
+            text-transform: uppercase;
+        }
+
+        .roi-stat {
+            display: flex;
+            justify-content: space-between;
+            padding: 1.5rem 0;
+            border-bottom: 1px solid var(--medium-gray);
+        }
+
+        .roi-stat:last-child {
+            border-bottom: none;
+        }
+
+        .roi-stat-label {
+            font-weight: 600;
+            color: var(--primary-black);
+        }
+
+        .roi-stat-value {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--accent-red);
+            font-family: 'Rajdhani', sans-serif;
+        }
+
+        /* Testimonials */
+        #testimonials {
+            background: var(--primary-black);
+            color: var(--white);
+        }
+
+        #testimonials .section-label {
+            color: var(--accent-red);
+        }
+
+        #testimonials .section-title {
+            color: var(--white);
+        }
+
+        #testimonials .section-subtitle {
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .testimonial-card {
+            background: var(--secondary-black);
+            padding: 3rem;
+            position: relative;
+            transition: all 0.3s ease;
+            border-top: 4px solid transparent;
+        }
+
+        .testimonial-card:hover {
+            border-top-color: var(--accent-red);
+            transform: translateY(-10px);
+        }
+
+        .testimonial-card::before {
+            content: '"';
+            position: absolute;
+            top: 1rem;
+            left: 2rem;
+            font-size: 5rem;
+            color: var(--accent-red);
+            opacity: 0.2;
+            font-family: Georgia, serif;
+            line-height: 1;
+        }
+
+        .testimonial-rating {
+            display: flex;
+            gap: 0.3rem;
+            margin-bottom: 1.5rem;
+            font-size: 1rem;
+        }
+
+        .star {
+            color: var(--accent-red);
+        }
+
+        .testimonial-text {
+            font-style: italic;
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.8;
+            margin-bottom: 2rem;
+            font-size: 0.95rem;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .author-avatar {
+            width: 50px;
+            height: 50px;
+            background: var(--accent-red);
+            color: var(--white);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            font-weight: 700;
+            clip-path: polygon(8% 0, 100% 0, 100% 100%, 0 100%);
+        }
+
+        .author-info {
+            flex: 1;
+        }
+
+        .author-name {
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: 0.2rem;
+        }
+
+        .author-company {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        /* Contact / CTA Section */
+        #contact {
+            background: var(--accent-red);
+            color: var(--white);
+            padding: 6rem 2rem;
+        }
+
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5rem;
+            align-items: center;
+        }
+
+        .contact-text h2 {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            font-weight: 800;
+            font-family: 'Rajdhani', sans-serif;
+            text-transform: uppercase;
+        }
+
+        .contact-text p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+            line-height: 1.7;
+        }
+
+        .contact-info-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .contact-info-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+        }
+
+        .contact-info-icon {
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            flex-shrink: 0;
+            clip-path: polygon(8% 0, 100% 0, 100% 100%, 0 100%);
+        }
+
+        .contact-info-item h4 {
+            font-size: 1.1rem;
+            margin-bottom: 0.3rem;
+            font-weight: 700;
+        }
+
+        .contact-info-item p {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin: 0;
+        }
+
+        .contact-form {
+            background: var(--white);
+            padding: 3rem;
+            color: var(--primary-black);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--primary-black);
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid var(--medium-gray);
+            font-family: inherit;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background: var(--white);
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--accent-red);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .submit-button {
+            width: 100%;
+            padding: 1.2rem 2rem;
+            background: var(--primary-black);
+            color: var(--white);
+            border: none;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-family: 'Rajdhani', sans-serif;
+            clip-path: polygon(8% 0, 100% 0, 100% 100%, 0 100%);
+        }
+
+        .submit-button:hover {
+            background: var(--secondary-black);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--primary-black);
+            color: var(--white);
+            padding: 4rem 2rem 2rem;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 4rem;
+            padding-bottom: 3rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .footer-about .footer-logo {
+            height: 50px;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-about .footer-logo img {
+            height: 100%;
+            width: auto;
+        }
+
+        .footer-about p {
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-section h4 {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+            font-family: 'Rajdhani', sans-serif;
+            text-transform: uppercase;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-section ul li a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .footer-section ul li a:hover {
+            color: var(--accent-red);
+            padding-left: 5px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .social-link {
+            width: 45px;
+            height: 45px;
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--white);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            clip-path: polygon(8% 0, 100% 0, 100% 100%, 0 100%);
+        }
+
+        .social-link:hover {
+            background: var(--accent-red);
+            transform: translateY(-5px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.9rem;
+        }
+
+        /* Certifications bar */
+        .certifications-bar {
+            background: var(--white);
+            padding: 2rem;
+            text-align: center;
+            border-top: 1px solid var(--medium-gray);
+            border-bottom: 1px solid var(--medium-gray);
+        }
+
+        .certifications-bar p {
+            color: var(--text-gray);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+        }
+
+        .certifications {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .certification-badge {
+            padding: 0.8rem 2rem;
+            background: var(--light-gray);
+            color: var(--primary-black);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.9rem;
+            clip-path: polygon(8% 0, 100% 0, 100% 100%, 0 100%);
+            border: 2px solid var(--accent-red);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1200px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-image {
+                display: none;
+            }
+
+            .benefits-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .footer-content {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav ul {
+                display: none;
+            }
+
+            section {
+                padding: 4rem 1.5rem;
+            }
+
+            .hero-stats {
+                grid-template-columns: 1fr;
+            }
+
+            .benefits-grid,
+            .services-grid,
+            .industries-grid,
+            .portfolio-grid,
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .roi-content,
+            .contact-content {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .contact-info-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="container">
+            <div class="logo">
+                <img src="logo-374x132.jpg" alt="FutureTint Logo">
+            </div>
+            <ul>
+                <li><a href="#benefits">Benefits</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#industries">Industries</a></li>
+                <li><a href="#portfolio">Portfolio</a></li>
+                <li><a href="#testimonials">Clients</a></li>
+                <li><a href="#contact" class="nav-cta">Request Quote</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1>
+                    Commercial Window Film
+                    <span class="accent">Solutions for Business</span>
+                </h1>
+                <p class="subtitle">
+                    Manitoba's leading commercial window film specialists. Reduce energy costs, enhance security, and improve workplace comfort with professional-grade solutions backed by industry-leading warranties.
+                </p>
+                <div class="hero-buttons">
+                    <a href="#contact" class="cta-button">
+                        Request Free Assessment <i class="fas fa-arrow-right"></i>
+                    </a>
+                    <a href="#roi" class="cta-button cta-button-secondary">
+                        Calculate ROI <i class="fas fa-calculator"></i>
+                    </a>
+                </div>
+                <div class="hero-stats">
+                    <div class="hero-stat">
+                        <div class="hero-stat-number">15+</div>
+                        <div class="hero-stat-label">Years Experience</div>
+                    </div>
+                    <div class="hero-stat">
+                        <div class="hero-stat-number">1000+</div>
+                        <div class="hero-stat-label">Commercial Projects</div>
+                    </div>
+                    <div class="hero-stat">
+                        <div class="hero-stat-number">99%</div>
+                        <div class="hero-stat-label">Client Satisfaction</div>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-image">
+                <img src="decf3-2000x1500.png" alt="Commercial Building Installation">
+            </div>
+        </div>
+    </section>
+
+    <!-- Certifications Bar -->
+    <div class="certifications-bar">
+        <p>Certified & Trusted by Industry Leaders</p>
+        <div class="certifications">
+            <div class="certification-badge">LLumar SelectPro</div>
+            <div class="certification-badge">Vista Platinum</div>
+            <div class="certification-badge">FormulaOne Dealer</div>
+            <div class="certification-badge">Eastman Certified</div>
+        </div>
+    </div>
+
+    <!-- Benefits Section -->
+    <section id="benefits">
+        <div class="container">
+            <div class="section-header fade-in">
+                <div class="section-label">Why Choose Window Film</div>
+                <h2 class="section-title">Business Benefits</h2>
+                <p class="section-subtitle">Professional window film solutions deliver measurable ROI for commercial properties</p>
+            </div>
+
+            <div class="benefits-grid">
+                <div class="benefit-card fade-in">
+                    <div class="benefit-icon">
+                        <i class="fas fa-piggy-bank"></i>
+                    </div>
+                    <h3>Reduce Energy Costs</h3>
+                    <p>Cut HVAC costs by up to 30% with solar control films that block heat while maintaining natural light.</p>
+                </div>
+
+                <div class="benefit-card fade-in">
+                    <div class="benefit-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Enhanced Security</h3>
+                    <p>Protect against break-ins, vandalism, and severe weather with safety and security films.</p>
+                </div>
+
+                <div class="benefit-card fade-in">
+                    <div class="benefit-icon">
+                        <i class="fas fa-sun-plant-wilt"></i>
+                    </div>
+                    <h3>UV Protection</h3>
+                    <p>Block 99.9% of harmful UV rays, protecting employees and preventing furniture fading.</p>
+                </div>
+
+                <div class="benefit-card fade-in">
+                    <div class="benefit-icon">
+                        <i class="fas fa-user-shield"></i>
+                    </div>
+                    <h3>Privacy Control</h3>
+                    <p>Decorative and reflective films provide privacy without sacrificing natural light or views.</p>
+                </div>
+
+                <div class="benefit-card fade-in">
+                    <div class="benefit-icon">
+                        <i class="fas fa-eye-slash"></i>
+                    </div>
+                    <h3>Glare Reduction</h3>
+                    <p>Eliminate screen glare and eye strain, improving productivity and employee comfort.</p>
+                </div>
+
+                <div class="benefit-card fade-in">
+                    <div class="benefit-icon">
+                        <i class="fas fa-certificate"></i>
+                    </div>
+                    <h3>Lifetime Warranty</h3>
+                    <p>All installations backed by manufacturer warranties and our commitment to quality.</p>
+                </div>
+
+                <div class="benefit-card fade-in">
+                    <div class="benefit-icon">
+                        <i class="fas fa-leaf"></i>
+                    </div>
+                    <h3>Sustainability</h3>
+                    <p>Reduce carbon footprint and meet green building standards with energy-efficient films.</p>
+                </div>
+
+                <div class="benefit-card fade-in">
+                    <div class="benefit-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <h3>Quick Installation</h3>
+                    <p>Minimal disruption to operations with professional installation typically completed in 1-2 days.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services">
+        <div class="container">
+            <div class="section-header fade-in">
+                <div class="section-label">What We Offer</div>
+                <h2 class="section-title">Commercial Services</h2>
+                <p class="section-subtitle">Comprehensive window film solutions tailored to your business needs</p>
+            </div>
+
+            <div class="services-grid">
+                <div class="service-card fade-in">
+                    <div class="service-icon"><i class="fas fa-sun"></i></div>
+                    <h3>Solar Control Films</h3>
+                    <p>Advanced heat-rejecting technology to dramatically reduce cooling costs and improve comfort.</p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check"></i> Up to 80% heat reduction</li>
+                        <li><i class="fas fa-check"></i> Spectrally selective technology</li>
+                        <li><i class="fas fa-check"></i> Multiple tint options</li>
+                        <li><i class="fas fa-check"></i> Interior & exterior application</li>
+                    </ul>
+                </div>
+
+                <div class="service-card fade-in">
+                    <div class="service-icon"><i class="fas fa-shield-alt"></i></div>
+                    <h3>Security & Safety Films</h3>
+                    <p>Protect your property and occupants from forced entry, accidents, and natural disasters.</p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check"></i> Shatter-resistant protection</li>
+                        <li><i class="fas fa-check"></i> Bomb blast mitigation</li>
+                        <li><i class="fas fa-check"></i> Hurricane protection</li>
+                        <li><i class="fas fa-check"></i> Multiple thickness options</li>
+                    </ul>
+                </div>
+
+                <div class="service-card fade-in">
+                    <div class="service-icon"><i class="fas fa-palette"></i></div>
+                    <h3>Decorative Films</h3>
+                    <p>Transform spaces with frosted, etched, and custom designs for privacy and aesthetics.</p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check"></i> Conference room privacy</li>
+                        <li><i class="fas fa-check"></i> Custom branding & logos</li>
+                        <li><i class="fas fa-check"></i> Frosted & etched patterns</li>
+                        <li><i class="fas fa-check"></i> Remove & replace capability</li>
+                    </ul>
+                </div>
+
+                <div class="service-card fade-in">
+                    <div class="service-icon"><i class="fas fa-car"></i></div>
+                    <h3>Automotive Solutions</h3>
+                    <p>Professional tinting for fleet vehicles with ceramic technology and lifetime warranties.</p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check"></i> FormulaOne Pinnacle & Stratos</li>
+                        <li><i class="fas fa-check"></i> No signal interference</li>
+                        <li><i class="fas fa-check"></i> Superior heat rejection</li>
+                        <li><i class="fas fa-check"></i> Lifetime transferable warranty</li>
+                    </ul>
+                </div>
+
+                <div class="service-card fade-in">
+                    <div class="service-icon"><i class="fas fa-building"></i></div>
+                    <h3>Anti-Graffiti Films</h3>
+                    <p>Sacrificial protection that saves replacement costs and maintains property appearance.</p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check"></i> Easy removal & replacement</li>
+                        <li><i class="fas fa-check"></i> Scratch-resistant surface</li>
+                        <li><i class="fas fa-check"></i> Exterior application</li>
+                        <li><i class="fas fa-check"></i> Cost-effective protection</li>
+                    </ul>
+                </div>
+
+                <div class="service-card fade-in">
+                    <div class="service-icon"><i class="fas fa-spray-can"></i></div>
+                    <h3>Custom Graphics</h3>
+                    <p>Window graphics and vinyl lettering for branding, wayfinding, and promotional displays.</p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check"></i> Storefront lettering</li>
+                        <li><i class="fas fa-check"></i> Perforated window film</li>
+                        <li><i class="fas fa-check"></i> Wall murals & graphics</li>
+                        <li><i class="fas fa-check"></i> Full design services</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Industries Section -->
+    <section id="industries">
+        <div class="container">
+            <div class="section-header fade-in">
+                <div class="section-label">Industries We Serve</div>
+                <h2 class="section-title">Commercial Sectors</h2>
+                <p class="section-subtitle">Trusted by businesses across Manitoba and Northern Ontario</p>
+            </div>
+
+            <div class="industries-grid">
+                <div class="industry-card fade-in">
+                    <h3><i class="fas fa-briefcase"></i> Corporate Offices</h3>
+                    <p>Enhance employee comfort, reduce glare on screens, and create professional conference room privacy with our commercial film solutions.</p>
+                </div>
+
+                <div class="industry-card fade-in">
+                    <h3><i class="fas fa-store"></i> Retail & Shopping Centers</h3>
+                    <p>Protect merchandise from UV damage, control heat, and create eye-catching storefront displays with decorative and solar films.</p>
+                </div>
+
+                <div class="industry-card fade-in">
+                    <h3><i class="fas fa-hotel"></i> Hotels & Hospitality</h3>
+                    <p>Improve guest comfort, reduce energy costs, and enhance privacy with professional window film installations.</p>
+                </div>
+
+                <div class="industry-card fade-in">
+                    <h3><i class="fas fa-hospital"></i> Healthcare Facilities</h3>
+                    <p>Meet HIPAA privacy requirements, reduce glare in patient rooms, and create comfortable healing environments.</p>
+                </div>
+
+                <div class="industry-card fade-in">
+                    <h3><i class="fas fa-graduation-cap"></i> Educational Institutions</h3>
+                    <p>Protect students and staff with security films, reduce cooling costs, and minimize classroom glare.</p>
+                </div>
+
+                <div class="industry-card fade-in">
+                    <h3><i class="fas fa-warehouse"></i> Industrial & Manufacturing</h3>
+                    <p>Control heat in large facilities, protect equipment from sun damage, and improve worker comfort.</p>
+                </div>
+
+                <div class="industry-card fade-in">
+                    <h3><i class="fas fa-landmark"></i> Government & Municipal</h3>
+                    <p>Enhance security, reduce energy consumption, and protect sensitive areas with professional-grade films.</p>
+                </div>
+
+                <div class="industry-card fade-in">
+                    <h3><i class="fas fa-utensils"></i> Restaurants & Bars</h3>
+                    <p>Control temperature, create ambiance, and protect patrons from excessive heat and glare.</p>
+                </div>
+
+                <div class="industry-card fade-in">
+                    <h3><i class="fas fa-dumbbell"></i> Fitness & Recreation</h3>
+                    <p>Reduce heat in workout areas, provide privacy where needed, and create comfortable spaces.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio">
+        <div class="container">
+            <div class="section-header fade-in">
+                <div class="section-label">Recent Projects</div>
+                <h2 class="section-title">Our Portfolio</h2>
+                <p class="section-subtitle">Commercial installations across Manitoba and Northern Ontario</p>
+            </div>
+
+            <div class="portfolio-grid">
+                <div class="portfolio-item fade-in">
+                    <img src="sol2-2000x1500.png" alt="Office Building">
+                    <div class="portfolio-overlay">
+                        <div class="portfolio-tag">Corporate</div>
+                        <h4>Downtown Office Tower</h4>
+                        <p>Solar control film installation reducing cooling costs by 28%</p>
+                    </div>
+                </div>
+
+                <div class="portfolio-item fade-in">
+                    <img src="sol3-2000x1500.jpg" alt="Retail Space">
+                    <div class="portfolio-overlay">
+                        <div class="portfolio-tag">Retail</div>
+                        <h4>Shopping Center</h4>
+                        <p>UV protection preserving merchandise and displays</p>
+                    </div>
+                </div>
+
+                <div class="portfolio-item fade-in">
+                    <img src="8mil-vandalism-2-2000x1500.png" alt="Bank Security">
+                    <div class="portfolio-overlay">
+                        <div class="portfolio-tag">Security</div>
+                        <h4>Financial Institution</h4>
+                        <p>Security film installation for enhanced protection</p>
+                    </div>
+                </div>
+
+                <div class="portfolio-item fade-in">
+                    <img src="decf2-2000x1500.png" alt="Conference Room">
+                    <div class="portfolio-overlay">
+                        <div class="portfolio-tag">Decorative</div>
+                        <h4>Corporate Conference Rooms</h4>
+                        <p>Frosted privacy film with custom logo integration</p>
+                    </div>
+                </div>
+
+                <div class="portfolio-item fade-in">
+                    <img src="sol4-2000x1500.jpg" alt="Hotel Windows">
+                    <div class="portfolio-overlay">
+                        <div class="portfolio-tag">Hospitality</div>
+                        <h4>Boutique Hotel</h4>
+                        <p>Dual reflective film for guest comfort and privacy</p>
+                    </div>
+                </div>
+
+                <div class="portfolio-item fade-in">
+                    <img src="sol5-2000x1500.jpg" alt="School Windows">
+                    <div class="portfolio-overlay">
+                        <div class="portfolio-tag">Education</div>
+                        <h4>Educational Facility</h4>
+                        <p>Safety film and solar control for student protection</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ROI Section -->
+    <section id="roi">
+        <div class="container">
+            <div class="section-header fade-in">
+                <div class="section-label">Calculate Your Savings</div>
+                <h2 class="section-title">Return on Investment</h2>
+                <p class="section-subtitle">Window film typically pays for itself in 3-5 years through energy savings</p>
+            </div>
+
+            <div class="roi-content">
+                <div class="roi-benefits">
+                    <div class="roi-item slide-in-left">
+                        <div class="roi-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <div>
+                            <h4>Energy Cost Savings</h4>
+                            <p>Reduce HVAC costs by 20-30% annually with solar control films. A typical 10,000 sq ft commercial space can save $3,000-$5,000 per year.</p>
+                        </div>
+                    </div>
+
+                    <div class="roi-item slide-in-left">
+                        <div class="roi-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div>
+                            <h4>Increased Productivity</h4>
+                            <p>Studies show comfortable workspaces with reduced glare and consistent temperatures improve employee productivity by up to 8%.</p>
+                        </div>
+                    </div>
+
+                    <div class="roi-item slide-in-left">
+                        <div class="roi-icon">
+                            <i class="fas fa-recycle"></i>
+                        </div>
+                        <div>
+                            <h4>Extended Equipment Life</h4>
+                            <p>Protect furnishings, flooring, and equipment from UV damage, extending replacement cycles and saving thousands in maintenance costs.</p>
+                        </div>
+                    </div>
+
+                    <div class="roi-item slide-in-left">
+                        <div class="roi-icon">
+                            <i class="fas fa-medal"></i>
+                        </div>
+                        <div>
+                            <h4>Green Building Credits</h4>
+                            <p>Earn LEED points and meet energy efficiency standards while demonstrating corporate environmental responsibility.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="roi-calculator slide-in-right">
+                    <h3>Average ROI Metrics</h3>
+                    <div class="roi-stat">
+                        <span class="roi-stat-label">Energy Savings</span>
+                        <span class="roi-stat-value">20-30%</span>
+                    </div>
+                    <div class="roi-stat">
+                        <span class="roi-stat-label">UV Reduction</span>
+                        <span class="roi-stat-value">99.9%</span>
+                    </div>
+                    <div class="roi-stat">
+                        <span class="roi-stat-label">Heat Rejection</span>
+                        <span class="roi-stat-value">Up to 80%</span>
+                    </div>
+                    <div class="roi-stat">
+                        <span class="roi-stat-label">Payback Period</span>
+                        <span class="roi-stat-value">3-5 Years</span>
+                    </div>
+                    <div class="roi-stat">
+                        <span class="roi-stat-label">Warranty Coverage</span>
+                        <span class="roi-stat-value">Lifetime</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials">
+        <div class="container">
+            <div class="section-header fade-in">
+                <div class="section-label">Client Success Stories</div>
+                <h2 class="section-title">What Our Clients Say</h2>
+                <p class="section-subtitle">Trusted by businesses throughout Manitoba and Northern Ontario</p>
+            </div>
+
+            <div class="testimonials-grid">
+                <div class="testimonial-card fade-in">
+                    <div class="testimonial-rating">
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                    </div>
+                    <p class="testimonial-text">FutureTint transformed our office building with solar control film. Our cooling costs dropped by 32% in the first year, and employees love the reduced glare on their screens. The installation was quick and professional.</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">DM</div>
+                        <div class="author-info">
+                            <div class="author-name">David Morrison</div>
+                            <div class="author-company">Facilities Manager, Tech Corp</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card fade-in">
+                    <div class="testimonial-rating">
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                    </div>
+                    <p class="testimonial-text">We needed privacy for our conference rooms without losing natural light. The frosted decorative film was perfect. FutureTint even incorporated our company logo into the design. Highly professional service from start to finish.</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">SK</div>
+                        <div class="author-info">
+                            <div class="author-name">Sarah Kim</div>
+                            <div class="author-company">Operations Director, Financial Services</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card fade-in">
+                    <div class="testimonial-rating">
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                    </div>
+                    <p class="testimonial-text">After experiencing a break-in attempt, we installed FutureTint's security film on all ground-floor windows. It provides peace of mind knowing our property is better protected. The installation was completed over a weekend with no disruption to business.</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">JT</div>
+                        <div class="author-info">
+                            <div class="author-name">James Thompson</div>
+                            <div class="author-company">Owner, Retail Chain</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact / CTA Section -->
+    <section id="contact">
+        <div class="container">
+            <div class="contact-content">
+                <div class="contact-text">
+                    <h2>Ready to Reduce Your Energy Costs?</h2>
+                    <p>Get a free site assessment and customized proposal for your commercial property. Our experts will analyze your building's needs and recommend the optimal window film solution.</p>
+                    
+                    <div class="contact-info-grid">
+                        <div class="contact-info-item">
+                            <div class="contact-info-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div>
+                                <h4>Service Area</h4>
+                                <p>Manitoba & Northern Ontario</p>
+                            </div>
+                        </div>
+
+                        <div class="contact-info-item">
+                            <div class="contact-info-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div>
+                                <h4>Email</h4>
+                                <p>commercial@futuretint.com</p>
+                            </div>
+                        </div>
+
+                        <div class="contact-info-item">
+                            <div class="contact-info-icon">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div>
+                                <h4>Response Time</h4>
+                                <p>24 hours or less</p>
+                            </div>
+                        </div>
+
+                        <div class="contact-info-item">
+                            <div class="contact-info-icon">
+                                <i class="fas fa-award"></i>
+                            </div>
+                            <div>
+                                <h4>Certifications</h4>
+                                <p>SelectPro & Vista Platinum</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <form class="contact-form">
+                    <div class="form-group">
+                        <label for="company">Company Name *</label>
+                        <input type="text" id="company" name="company" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="name">Contact Name *</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email Address *</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone">Phone Number *</label>
+                        <input type="tel" id="phone" name="phone" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="property-type">Property Type</label>
+                        <select id="property-type" name="property-type">
+                            <option value="">Select property type</option>
+                            <option value="office">Office Building</option>
+                            <option value="retail">Retail / Shopping Center</option>
+                            <option value="hotel">Hotel / Hospitality</option>
+                            <option value="healthcare">Healthcare Facility</option>
+                            <option value="education">Educational Institution</option>
+                            <option value="industrial">Industrial / Warehouse</option>
+                            <option value="government">Government / Municipal</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message">Project Details</label>
+                        <textarea id="message" name="message" placeholder="Tell us about your project requirements..."></textarea>
+                    </div>
+
+                    <button type="submit" class="submit-button">Request Free Assessment</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-about">
+                    <div class="footer-logo">
+                        <img src="logo-374x132.jpg" alt="FutureTint Logo">
+                    </div>
+                    <p>Manitoba's leading commercial window film specialists. Exclusive Vista Platinum and FormulaOne dealer with over 15 years of experience serving businesses across Manitoba and Northern Ontario.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-link" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" class="social-link" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Services</h4>
+                    <ul>
+                        <li><a href="#services">Solar Control Films</a></li>
+                        <li><a href="#services">Security Films</a></li>
+                        <li><a href="#services">Decorative Films</a></li>
+                        <li><a href="#services">Automotive Tinting</a></li>
+                        <li><a href="#services">Custom Graphics</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Industries</h4>
+                    <ul>
+                        <li><a href="#industries">Corporate Offices</a></li>
+                        <li><a href="#industries">Retail & Shopping</a></li>
+                        <li><a href="#industries">Healthcare</a></li>
+                        <li><a href="#industries">Education</a></li>
+                        <li><a href="#industries">Government</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="#benefits">Why Choose Us</a></li>
+                        <li><a href="#portfolio">Portfolio</a></li>
+                        <li><a href="#testimonials">Testimonials</a></li>
+                        <li><a href="#roi">ROI Calculator</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2025 FutureTint & Stripe. All rights reserved. | LLumar SelectPro Dealer | Vista Platinum Dealer | FormulaOne Specialist</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const offset = 80;
+                    const targetPosition = target.offsetTop - offset;
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Form submission handler
+        document.querySelector('.contact-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const button = this.querySelector('.submit-button');
+            const originalText = button.textContent;
+            
+            button.textContent = 'Sending...';
+            button.style.opacity = '0.7';
+            
+            setTimeout(() => {
+                button.textContent = '✓ Request Sent!';
+                button.style.background = 'var(--accent-red)';
+                this.reset();
+                
+                setTimeout(() => {
+                    button.textContent = originalText;
+                    button.style.background = '';
+                    button.style.opacity = '';
+                }, 3000);
+            }, 1500);
+        });
+
+        // Navbar scroll effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 100) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Intersection Observer for fade-in animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => {
+                        entry.target.classList.add('visible');
+                    }, index * 100);
+                }
+            });
+        }, observerOptions);
+
+        // Observe all elements with animation classes
+        document.querySelectorAll('.fade-in, .slide-in-left, .slide-in-right').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Animated counters for hero stats
+        const animateCounters = () => {
+            const counters = document.querySelectorAll('.hero-stat-number');
+            const speed = 200;
+
+            counters.forEach(counter => {
+                const target = counter.textContent;
+                const isPercentage = target.includes('%');
+                const isPlus = target.includes('+');
+                const number = parseInt(target.replace(/[^\d]/g, ''));
+                
+                let count = 0;
+                const updateCount = () => {
+                    const increment = number / speed;
+                    if (count < number) {
+                        count += increment;
+                        counter.textContent = Math.ceil(count) + (isPercentage ? '%' : isPlus ? '+' : '');
+                        setTimeout(updateCount, 10);
+                    } else {
+                        counter.textContent = target;
+                    }
+                };
+                
+                updateCount();
+            });
+        };
+
+        // Trigger counter animation on page load
+        window.addEventListener('load', animateCounters);
+    </script>
+</body>
+</html>

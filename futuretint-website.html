@@ -1,0 +1,1627 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FutureTint | Premium Window Film Solutions</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #0a0e27;
+            --secondary: #1a1f3a;
+            --accent: #2d3561;
+            --highlight: #ff6b6b;
+            --highlight-dark: #ee5a52;
+            --blue: #4ecdc4;
+            --light: #f8f9fa;
+            --white: #ffffff;
+            --gradient-1: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --gradient-2: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            --gradient-3: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            line-height: 1.6;
+            color: var(--primary);
+            overflow-x: hidden;
+            background: var(--light);
+        }
+
+        /* Scroll animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .slide-in-left {
+            opacity: 0;
+            transform: translateX(-50px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .slide-in-left.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .slide-in-right {
+            opacity: 0;
+            transform: translateX(50px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .slide-in-right.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(10, 14, 39, 0.8);
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            z-index: 1000;
+            padding: 1.2rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        nav.scrolled {
+            padding: 0.8rem 0;
+            background: rgba(10, 14, 39, 0.95);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        nav .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 3rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--white);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        nav .logo::before {
+            content: '◆';
+            color: var(--highlight);
+            font-size: 1.2rem;
+        }
+
+        nav .logo span {
+            background: linear-gradient(135deg, var(--highlight), var(--blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        nav a {
+            color: rgba(255, 255, 255, 0.9);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+            font-size: 0.95rem;
+            position: relative;
+            letter-spacing: 0.5px;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--highlight);
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover {
+            color: var(--white);
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        .nav-cta {
+            padding: 0.6rem 1.5rem;
+            background: var(--highlight);
+            border-radius: 25px;
+            transition: all 0.3s;
+        }
+
+        .nav-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(255, 107, 107, 0.4);
+        }
+
+        .nav-cta::after {
+            display: none;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #0a0e27 0%, #1a1f3a 50%, #2d3561 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--white);
+            position: relative;
+            overflow: hidden;
+            padding: 2rem;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(circle at 20% 50%, rgba(78, 205, 196, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(255, 107, 107, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 40% 20%, rgba(102, 126, 234, 0.1) 0%, transparent 50%);
+            animation: pulse 15s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.8; transform: scale(1.1); }
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background: url('data:image/svg+xml,<svg width="60" height="60" xmlns="http://www.w3.org/2000/svg"><rect width="1" height="1" fill="rgba(255,255,255,0.03)"/></svg>');
+            animation: slide 60s linear infinite;
+            opacity: 0.5;
+        }
+
+        @keyframes slide {
+            0% { transform: translate(0, 0) rotate(0deg); }
+            100% { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 900px;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1.5rem;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            animation: fadeInUp 1s ease-out 0.2s backwards;
+        }
+
+        .hero-badge::before {
+            content: '🏆';
+            font-size: 1.2rem;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 8vw, 5rem);
+            margin-bottom: 1.5rem;
+            font-weight: 900;
+            line-height: 1.1;
+            letter-spacing: -2px;
+            animation: fadeInUp 1s ease-out 0.4s backwards;
+        }
+
+        .hero h1 .gradient-text {
+            background: linear-gradient(135deg, var(--highlight), var(--blue), var(--highlight));
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradient-shift 3s ease infinite, fadeInUp 1s ease-out 0.4s backwards;
+        }
+
+        @keyframes gradient-shift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .hero p {
+            font-size: clamp(1.1rem, 2vw, 1.3rem);
+            margin-bottom: 2.5rem;
+            opacity: 0.9;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            font-weight: 400;
+            line-height: 1.8;
+            animation: fadeInUp 1s ease-out 0.6s backwards;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fadeInUp 1s ease-out 0.8s backwards;
+        }
+
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1.2rem 3rem;
+            background: var(--highlight);
+            color: var(--white);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 10px 40px rgba(255, 107, 107, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .cta-button:hover::before {
+            left: 100%;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 50px rgba(255, 107, 107, 0.4);
+            background: var(--highlight-dark);
+        }
+
+        .cta-button-secondary {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            box-shadow: none;
+        }
+
+        .cta-button-secondary:hover {
+            background: rgba(255, 255, 255, 0.2);
+            border-color: rgba(255, 255, 255, 0.5);
+            box-shadow: 0 10px 40px rgba(255, 255, 255, 0.1);
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s infinite;
+        }
+
+        .scroll-indicator::after {
+            content: '↓';
+            font-size: 2rem;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
+            40% { transform: translateX(-50%) translateY(-10px); }
+            60% { transform: translateX(-50%) translateY(-5px); }
+        }
+
+        /* Section Styling */
+        section {
+            padding: 8rem 2rem;
+            position: relative;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
+            margin-bottom: 1rem;
+            font-weight: 900;
+            color: var(--primary);
+            letter-spacing: -1px;
+            line-height: 1.2;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: clamp(1.1rem, 2vw, 1.3rem);
+            color: #666;
+            margin-bottom: 4rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            font-weight: 400;
+        }
+
+        /* Stats Section */
+        .stats-section {
+            background: var(--primary);
+            color: var(--white);
+            padding: 5rem 2rem;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 3rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 4rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--highlight), var(--blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            font-weight: 500;
+        }
+
+        /* About Section */
+        #about {
+            background: var(--white);
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5rem;
+            align-items: center;
+        }
+
+        .about-text h3 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+            font-weight: 800;
+            letter-spacing: -1px;
+        }
+
+        .about-text p {
+            margin-bottom: 1.5rem;
+            color: #555;
+            font-size: 1.15rem;
+            line-height: 1.9;
+        }
+
+        .about-features {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            background: var(--light);
+            border-radius: 15px;
+            transition: all 0.3s;
+        }
+
+        .feature-item:hover {
+            transform: translateX(5px);
+            background: linear-gradient(135deg, rgba(78, 205, 196, 0.1), rgba(255, 107, 107, 0.1));
+        }
+
+        .feature-icon {
+            font-size: 2rem;
+            min-width: 50px;
+        }
+
+        .feature-text {
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.8rem 1.8rem;
+            background: linear-gradient(135deg, var(--highlight), var(--highlight-dark));
+            color: var(--white);
+            border-radius: 50px;
+            font-weight: 600;
+            margin-top: 1.5rem;
+            box-shadow: 0 10px 30px rgba(255, 107, 107, 0.3);
+        }
+
+        .about-image {
+            position: relative;
+        }
+
+        .about-image::before {
+            content: '';
+            position: absolute;
+            top: -20px;
+            left: -20px;
+            right: 20px;
+            bottom: 20px;
+            background: linear-gradient(135deg, var(--highlight), var(--blue));
+            border-radius: 30px;
+            z-index: -1;
+            opacity: 0.1;
+        }
+
+        .about-image img {
+            width: 100%;
+            border-radius: 25px;
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Services Grid */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2.5rem;
+            margin-top: 4rem;
+        }
+
+        .service-card {
+            background: var(--white);
+            padding: 3rem;
+            border-radius: 25px;
+            box-shadow: 0 5px 30px rgba(0, 0, 0, 0.08);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--highlight), var(--blue));
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s ease;
+        }
+
+        .service-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .service-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+        }
+
+        .service-icon {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+            display: inline-block;
+            transition: all 0.3s;
+        }
+
+        .service-card:hover .service-icon {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        .service-card h3 {
+            font-size: 1.6rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+            font-weight: 700;
+        }
+
+        .service-card p {
+            color: #666;
+            line-height: 1.9;
+            font-size: 1.05rem;
+        }
+
+        /* Gallery Section */
+        #gallery {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: var(--white);
+        }
+
+        #gallery .section-title {
+            color: var(--white);
+        }
+
+        #gallery .section-subtitle {
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 4rem;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 25px;
+            aspect-ratio: 4/3;
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.4);
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+        }
+
+        .gallery-item:nth-child(1) {
+            grid-row: span 1;
+        }
+
+        .gallery-item:nth-child(2) {
+            grid-row: span 1;
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.03);
+            box-shadow: 0 25px 80px rgba(0, 0, 0, 0.5);
+            z-index: 10;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: all 0.5s ease;
+            filter: brightness(0.9);
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.15);
+            filter: brightness(0.6);
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.4) 50%, rgba(0, 0, 0, 0.9) 100%);
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            opacity: 0;
+            transition: all 0.4s ease;
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            opacity: 1;
+        }
+
+        .gallery-overlay h4 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+            transform: translateY(20px);
+            transition: transform 0.4s ease 0.1s;
+        }
+
+        .gallery-item:hover .gallery-overlay h4 {
+            transform: translateY(0);
+        }
+
+        .gallery-overlay p {
+            opacity: 0.9;
+            transform: translateY(20px);
+            transition: transform 0.4s ease 0.2s;
+        }
+
+        .gallery-item:hover .gallery-overlay p {
+            transform: translateY(0);
+        }
+
+        .gallery-badge {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            transform: translateY(-50px);
+            opacity: 0;
+            transition: all 0.4s ease 0.3s;
+        }
+
+        .gallery-item:hover .gallery-badge {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        /* Testimonials */
+        #testimonials {
+            background: var(--light);
+        }
+
+        .testimonials-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: 2.5rem;
+            margin-top: 4rem;
+        }
+
+        .testimonial-card {
+            background: var(--white);
+            padding: 3rem;
+            border-radius: 25px;
+            box-shadow: 0 10px 50px rgba(0, 0, 0, 0.08);
+            position: relative;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.12);
+        }
+
+        .testimonial-card::before {
+            content: '"';
+            position: absolute;
+            top: 1.5rem;
+            left: 2rem;
+            font-size: 6rem;
+            color: var(--highlight);
+            opacity: 0.15;
+            font-family: Georgia, serif;
+            line-height: 1;
+        }
+
+        .testimonial-rating {
+            display: flex;
+            gap: 0.3rem;
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
+        }
+
+        .star {
+            color: #ffc107;
+        }
+
+        .testimonial-text {
+            font-style: italic;
+            color: #555;
+            line-height: 1.9;
+            margin-bottom: 2rem;
+            font-size: 1.05rem;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding-top: 1.5rem;
+            border-top: 2px solid var(--light);
+        }
+
+        .author-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--highlight), var(--blue));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--white);
+        }
+
+        .author-info {
+            flex: 1;
+        }
+
+        .author-name {
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 0.2rem;
+        }
+
+        .author-location {
+            font-size: 0.9rem;
+            color: #888;
+        }
+
+        /* Contact Section */
+        #contact {
+            background: linear-gradient(135deg, var(--secondary) 0%, var(--primary) 100%);
+            color: var(--white);
+        }
+
+        #contact .section-title {
+            color: var(--white);
+        }
+
+        #contact .section-subtitle {
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5rem;
+            margin-top: 4rem;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 2.5rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1.5rem;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .contact-item:hover {
+            background: rgba(255, 255, 255, 0.08);
+            transform: translateX(10px);
+        }
+
+        .contact-icon {
+            font-size: 2.5rem;
+            min-width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--highlight), var(--blue));
+            border-radius: 15px;
+        }
+
+        .contact-item h4 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+
+        .contact-item p {
+            opacity: 0.9;
+            line-height: 1.8;
+            font-size: 1.05rem;
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            padding: 3rem;
+            border-radius: 25px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .form-group label {
+            font-weight: 600;
+            font-size: 0.95rem;
+            letter-spacing: 0.5px;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            padding: 1.2rem;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            font-family: inherit;
+            font-size: 1rem;
+            background: rgba(255, 255, 255, 0.08);
+            color: var(--white);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--highlight);
+            background: rgba(255, 255, 255, 0.12);
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 150px;
+        }
+
+        .submit-button {
+            padding: 1.2rem 2.5rem;
+            background: linear-gradient(135deg, var(--highlight), var(--highlight-dark));
+            color: var(--white);
+            border: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(255, 107, 107, 0.3);
+        }
+
+        .submit-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(255, 107, 107, 0.5);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--primary);
+            color: var(--white);
+            text-align: center;
+            padding: 3rem 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-logo {
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+        }
+
+        .footer-logo span {
+            background: linear-gradient(135deg, var(--highlight), var(--blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        footer p {
+            opacity: 0.7;
+            margin-top: 1rem;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            margin: 1.5rem 0;
+        }
+
+        .social-link {
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .social-link:hover {
+            background: var(--highlight);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(255, 107, 107, 0.3);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .about-content,
+            .contact-content {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .about-features {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav ul {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-badge {
+                font-size: 0.8rem;
+                padding: 0.4rem 1rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+            }
+
+            .cta-button {
+                padding: 1rem 2rem;
+            }
+
+            section {
+                padding: 4rem 1.5rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .section-subtitle {
+                font-size: 1rem;
+            }
+
+            .services-grid,
+            .gallery-grid,
+            .testimonials-container {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 2rem;
+            }
+
+            .stat-number {
+                font-size: 3rem;
+            }
+
+            .service-card,
+            .testimonial-card {
+                padding: 2rem;
+            }
+
+            .contact-form {
+                padding: 2rem;
+            }
+
+            .gallery-item {
+                aspect-ratio: 1/1;
+            }
+        }
+
+        @media (max-width: 480px) {
+            nav .container {
+                padding: 0 1.5rem;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+                letter-spacing: -1px;
+            }
+
+            .stat-number {
+                font-size: 2.5rem;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="container">
+            <div class="logo">Future<span>Tint</span></div>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#gallery">Gallery</a></li>
+                <li><a href="#testimonials">Reviews</a></li>
+                <li><a href="#contact" class="nav-cta">Get Quote</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <div class="hero-badge">
+                LLumar SelectPro Certified Dealer
+            </div>
+            <h1>Premium <span class="gradient-text">Window Film</span> Solutions</h1>
+            <p>Protecting homes and businesses across Manitoba and Northern Ontario with professional, certified window film installation that reduces heat, enhances privacy, and improves energy efficiency.</p>
+            <div class="hero-buttons">
+                <a href="#contact" class="cta-button">Get Free Quote →</a>
+                <a href="#services" class="cta-button cta-button-secondary">View Services</a>
+            </div>
+        </div>
+        <div class="scroll-indicator"></div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats-section">
+        <div class="container">
+            <div class="stats-grid fade-in">
+                <div class="stat-item">
+                    <div class="stat-number">15+</div>
+                    <div class="stat-label">Years Experience</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">1000+</div>
+                    <div class="stat-label">Projects Completed</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">99%</div>
+                    <div class="stat-label">UV Protection</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">100%</div>
+                    <div class="stat-label">Satisfaction Rate</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <div class="container">
+            <h2 class="section-title fade-in">Why Choose FutureTint?</h2>
+            <p class="section-subtitle fade-in">Manitoba's premier window film installation specialists</p>
+            
+            <div class="about-content">
+                <div class="about-text slide-in-left">
+                    <h3>Expert Installation Since Day One</h3>
+                    <p>FutureTint provides professional installation of LLumar and Vista products and is the only "SelectPro" accredited window film dealer in the Manitoba area.</p>
+                    <p>Our window films offer superior UV protection, energy savings, enhanced privacy, and security for both residential and commercial properties.</p>
+                    
+                    <div class="about-features">
+                        <div class="feature-item">
+                            <div class="feature-icon">✓</div>
+                            <div class="feature-text">Certified Professionals</div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">✓</div>
+                            <div class="feature-text">Premium Materials</div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">✓</div>
+                            <div class="feature-text">Lifetime Warranty</div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">✓</div>
+                            <div class="feature-text">Expert Consultation</div>
+                        </div>
+                    </div>
+                    
+                    <span class="badge">🏆 SelectPro Certified</span>
+                </div>
+                <div class="about-image slide-in-right">
+                    <img src="https://futuretint.com/images/about.jpg" alt="Professional Window Film Installation">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services">
+        <div class="container">
+            <h2 class="section-title fade-in">Our Services</h2>
+            <p class="section-subtitle fade-in">Comprehensive window film solutions for every need</p>
+            
+            <div class="services-grid">
+                <div class="service-card fade-in">
+                    <div class="service-icon">☀️</div>
+                    <h3>Solar Control Films</h3>
+                    <p>Reduce heat and glare by up to 80% while lowering energy costs. Perfect for south-facing windows and sun-drenched rooms.</p>
+                </div>
+                
+                <div class="service-card fade-in">
+                    <div class="service-icon">🛡️</div>
+                    <h3>Security Films</h3>
+                    <p>Reliable defense against break-ins and accidents. Life can be unpredictable - protect your property with security window films.</p>
+                </div>
+                
+                <div class="service-card fade-in">
+                    <div class="service-icon">🎨</div>
+                    <h3>Decorative Films</h3>
+                    <p>Add privacy and style with etched designs and custom patterns. Transform your space with unique aesthetic solutions.</p>
+                </div>
+                
+                <div class="service-card fade-in">
+                    <div class="service-icon">🏢</div>
+                    <h3>Commercial Solutions</h3>
+                    <p>Professional window film installation for offices, retail spaces, and commercial buildings across Manitoba.</p>
+                </div>
+                
+                <div class="service-card fade-in">
+                    <div class="service-icon">🏠</div>
+                    <h3>Residential Services</h3>
+                    <p>Enhance comfort and energy efficiency in your home with our residential window film solutions.</p>
+                </div>
+                
+                <div class="service-card fade-in">
+                    <div class="service-icon">🌡️</div>
+                    <h3>UV Protection</h3>
+                    <p>Block up to 99% of harmful UV rays, protecting your family, furniture, and flooring from sun damage.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery">
+        <div class="container">
+            <h2 class="section-title fade-in">Our Work</h2>
+            <p class="section-subtitle fade-in">See the difference quality window film makes</p>
+            
+            <div class="gallery-grid">
+                <div class="gallery-item fade-in">
+                    <img src="https://futuretint.com/images/residential-1.jpg" alt="Residential Window Film">
+                    <div class="gallery-badge">Residential</div>
+                    <div class="gallery-overlay">
+                        <h4>Solar Control Film</h4>
+                        <p>Living room transformation with heat reduction</p>
+                    </div>
+                </div>
+                
+                <div class="gallery-item fade-in">
+                    <img src="https://futuretint.com/images/commercial-1.jpg" alt="Commercial Window Film">
+                    <div class="gallery-badge">Commercial</div>
+                    <div class="gallery-overlay">
+                        <h4>Office Installation</h4>
+                        <p>Privacy and glare reduction for workspace</p>
+                    </div>
+                </div>
+                
+                <div class="gallery-item fade-in">
+                    <img src="https://futuretint.com/images/decorative-1.jpg" alt="Decorative Window Film">
+                    <div class="gallery-badge">Decorative</div>
+                    <div class="gallery-overlay">
+                        <h4>Custom Etched Design</h4>
+                        <p>Elegant privacy solution for entrance</p>
+                    </div>
+                </div>
+                
+                <div class="gallery-item fade-in">
+                    <img src="https://futuretint.com/images/security-1.jpg" alt="Security Window Film">
+                    <div class="gallery-badge">Security</div>
+                    <div class="gallery-overlay">
+                        <h4>Safety Film</h4>
+                        <p>Enhanced protection for storefront</p>
+                    </div>
+                </div>
+                
+                <div class="gallery-item fade-in">
+                    <img src="https://futuretint.com/images/residential-2.jpg" alt="Home Window Tinting">
+                    <div class="gallery-badge">Residential</div>
+                    <div class="gallery-overlay">
+                        <h4>Energy Efficient</h4>
+                        <p>Complete home window treatment</p>
+                    </div>
+                </div>
+                
+                <div class="gallery-item fade-in">
+                    <img src="https://futuretint.com/images/commercial-2.jpg" alt="Business Window Film">
+                    <div class="gallery-badge">Commercial</div>
+                    <div class="gallery-overlay">
+                        <h4>Professional Solution</h4>
+                        <p>Multi-story building installation</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials">
+        <div class="container">
+            <h2 class="section-title fade-in">What Our Clients Say</h2>
+            <p class="section-subtitle fade-in">Real experiences from satisfied customers</p>
+            
+            <div class="testimonials-container">
+                <div class="testimonial-card fade-in">
+                    <div class="testimonial-rating">
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                    </div>
+                    <p class="testimonial-text">When we built our house in 2016, we were looking for something different to add a little privacy to our piano doors and front door. We called FutureTint and right away we were given a wonderful list to pick from. It ranged from some unique ideas using etched material and creating a design that definitely added a new look to our home.</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">JD</div>
+                        <div class="author-info">
+                            <div class="author-name">Jennifer D.</div>
+                            <div class="author-location">Winnipeg, MB</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card fade-in">
+                    <div class="testimonial-rating">
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                    </div>
+                    <p class="testimonial-text">In 2018, we noticed our kitchen & living room were quite hot due to the top windows that we didn't add blinds to. FutureTint explained the benefits and provided a timely and very reasonably priced quote. Since we have had the solar tint on our windows, we have found that it makes the inside of our house less hot during summer months.</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">RC</div>
+                        <div class="author-info">
+                            <div class="author-name">Robert C.</div>
+                            <div class="author-location">Manitoba</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card fade-in">
+                    <div class="testimonial-rating">
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                    </div>
+                    <p class="testimonial-text">Due to the fact that we were so happy with our decorative tint on the front windows, we contacted FutureTint regarding solar tinting for our south facing windows. We could not be more satisfied with FutureTint's overall customer service and the quality of their work.</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">SM</div>
+                        <div class="author-info">
+                            <div class="author-name">Sarah M.</div>
+                            <div class="author-location">Repeat Customer</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <div class="container">
+            <h2 class="section-title fade-in">Get in Touch</h2>
+            <p class="section-subtitle fade-in">Ready to transform your space? Contact us for a free consultation</p>
+            
+            <div class="contact-content">
+                <div class="contact-info">
+                    <div class="contact-item slide-in-left">
+                        <div class="contact-icon">📍</div>
+                        <div>
+                            <h4>Service Area</h4>
+                            <p>Manitoba and Northern Ontario<br>Professional installation available throughout the region</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item slide-in-left">
+                        <div class="contact-icon">📧</div>
+                        <div>
+                            <h4>Email Us</h4>
+                            <p>info@futuretint.com<br>Get a response within 24 hours</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item slide-in-left">
+                        <div class="contact-icon">🏆</div>
+                        <div>
+                            <h4>Certified Dealer</h4>
+                            <p>LLumar SelectPro Accredited<br>Vista Products Specialist</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <form class="contact-form slide-in-right">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="name" placeholder="Your name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" placeholder="your@email.com" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="phone">Phone</label>
+                        <input type="tel" id="phone" name="phone" placeholder="(204) 555-0123">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" placeholder="Tell us about your project..." required></textarea>
+                    </div>
+                    
+                    <button type="submit" class="submit-button">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">Future<span>Tint</span></div>
+            <div class="social-links">
+                <a href="#" class="social-link" aria-label="Facebook">f</a>
+                <a href="#" class="social-link" aria-label="Instagram">📷</a>
+                <a href="#" class="social-link" aria-label="LinkedIn">in</a>
+            </div>
+            <p>&copy; 2025 FutureTint - Manitoba's Premier Window Film Specialists | LLumar SelectPro Dealer</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const offset = 80;
+                    const targetPosition = target.offsetTop - offset;
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Form submission handler
+        document.querySelector('.contact-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const button = this.querySelector('.submit-button');
+            const originalText = button.textContent;
+            
+            button.textContent = 'Sending...';
+            button.style.opacity = '0.7';
+            
+            setTimeout(() => {
+                button.textContent = '✓ Message Sent!';
+                button.style.background = 'linear-gradient(135deg, #4ecdc4, #44a08d)';
+                this.reset();
+                
+                setTimeout(() => {
+                    button.textContent = originalText;
+                    button.style.background = '';
+                    button.style.opacity = '';
+                }, 3000);
+            }, 1500);
+        });
+
+        // Navbar scroll effect
+        const navbar = document.getElementById('navbar');
+        let lastScroll = 0;
+
+        window.addEventListener('scroll', () => {
+            const currentScroll = window.pageYOffset;
+            
+            if (currentScroll > 100) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+            
+            lastScroll = currentScroll;
+        });
+
+        // Intersection Observer for fade-in animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => {
+                        entry.target.classList.add('visible');
+                    }, index * 100);
+                }
+            });
+        }, observerOptions);
+
+        // Observe all elements with animation classes
+        document.querySelectorAll('.fade-in, .slide-in-left, .slide-in-right').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Parallax effect for hero
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const hero = document.querySelector('.hero-content');
+            if (hero && scrolled < window.innerHeight) {
+                hero.style.transform = `translateY(${scrolled * 0.4}px)`;
+                hero.style.opacity = Math.max(1 - (scrolled / 600), 0);
+            }
+        });
+
+        // Animated counters for stats
+        const animateCounters = () => {
+            const counters = document.querySelectorAll('.stat-number');
+            const speed = 200;
+
+            counters.forEach(counter => {
+                const target = counter.textContent;
+                const isPercentage = target.includes('%');
+                const isPlus = target.includes('+');
+                const number = parseInt(target.replace(/[^\d]/g, ''));
+                
+                let count = 0;
+                const updateCount = () => {
+                    const increment = number / speed;
+                    if (count < number) {
+                        count += increment;
+                        counter.textContent = Math.ceil(count) + (isPercentage ? '%' : isPlus ? '+' : '');
+                        setTimeout(updateCount, 10);
+                    } else {
+                        counter.textContent = target;
+                    }
+                };
+                
+                updateCount();
+            });
+        };
+
+        // Trigger counter animation when stats section is visible
+        const statsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    animateCounters();
+                    statsObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        const statsSection = document.querySelector('.stats-section');
+        if (statsSection) {
+            statsObserver.observe(statsSection);
+        }
+
+        // Gallery lightbox effect (simplified)
+        document.querySelectorAll('.gallery-item').forEach(item => {
+            item.addEventListener('click', function() {
+                const img = this.querySelector('img');
+                const title = this.querySelector('h4').textContent;
+                console.log('Gallery item clicked:', title);
+                // You can add a full lightbox modal here if desired
+            });
+        });
+
+        // Add active state to navigation based on scroll position
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('section[id]');
+            const scrollPosition = window.pageYOffset + 100;
+
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.offsetHeight;
+                const sectionId = section.getAttribute('id');
+                
+                if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+                    document.querySelectorAll('nav a').forEach(link => {
+                        link.classList.remove('active');
+                        if (link.getAttribute('href') === `#${sectionId}`) {
+                            link.classList.add('active');
+                        }
+                    });
+                }
+            });
+        });
+
+        // Scroll indicator hide on scroll
+        window.addEventListener('scroll', () => {
+            const indicator = document.querySelector('.scroll-indicator');
+            if (indicator) {
+                indicator.style.opacity = Math.max(1 - (window.pageYOffset / 300), 0);
+            }
+        });
+    </script>
+</body>
+</html>
